@@ -1,8 +1,41 @@
 // Liste des produits (sera remplacée par la base de données dans la phase 2)
 const products = [
-    { id: 'agenda', name: 'Agenda', price: 30 },
-    { id: 'dossier', name: 'Dossier Patient', price: 50 },
-    { id: 'facturation', name: 'Facturation', price: 40 },
+    { 
+        id: 'agenda', 
+        name: 'Agenda', 
+        price: 30,
+        category: 'Gestion'
+    },
+    { 
+        id: 'dossier', 
+        name: 'Dossier Patient', 
+        price: 50,
+        category: 'Médical'
+    },
+    { 
+        id: 'facturation', 
+        name: 'Facturation', 
+        price: 40,
+        category: 'Administratif'
+    },
+    { 
+        id: 'teleconsultation', 
+        name: 'Téléconsultation', 
+        price: 60,
+        category: 'Médical'
+    },
+    { 
+        id: 'stock', 
+        name: 'Gestion des stocks', 
+        price: 35,
+        category: 'Administratif'
+    },
+    { 
+        id: 'rdv', 
+        name: 'Prise de rendez-vous en ligne', 
+        price: 45,
+        category: 'Gestion'
+    }
 ];
 
 // Éléments du DOM
@@ -15,11 +48,28 @@ const finalPriceSpan = document.getElementById('finalPrice');
 
 // Afficher les produits
 function displayProducts() {
-    productsList.innerHTML = products.map(product => `
-        <div class="product-checkbox">
-            <input type="checkbox" id="${product.id}" name="products" value="${product.id}">
-            <label for="${product.id}">${product.name}</label>
-            <span class="price">${product.price}€/mois</span>
+    // Grouper les produits par catégorie
+    const productsByCategory = products.reduce((acc, product) => {
+        if (!acc[product.category]) {
+            acc[product.category] = [];
+        }
+        acc[product.category].push(product);
+        return acc;
+    }, {});
+
+    // Générer le HTML pour chaque catégorie
+    productsList.innerHTML = Object.entries(productsByCategory).map(([category, categoryProducts]) => `
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-3">${category}</h3>
+            <div class="space-y-2">
+                ${categoryProducts.map(product => `
+                    <div class="product-checkbox">
+                        <input type="checkbox" id="${product.id}" name="products" value="${product.id}">
+                        <label for="${product.id}">${product.name}</label>
+                        <span class="price">${product.price}€/mois</span>
+                    </div>
+                `).join('')}
+            </div>
         </div>
     `).join('');
 }

@@ -49,21 +49,29 @@ Créer un site web simple qui permet aux médecins de :
 
 ---
 
-### US2 — Définir la liste de produits en dur dans le code
+### US2 — Définir la liste de produits en dur dans le code ✅
 
-- [ ] Créer un tableau JS `products` contenant :
+- [x] Créer un tableau JS `products` contenant :
   - `id`
   - `name`
   - `price`
   - `category`
-- [ ] Exemple :
+- [x] Exemple :
   ```js
   const products = [
-    { id: 'agenda', name: 'Agenda', price: 30 },
-    { id: 'dossier', name: 'Dossier Patient', price: 50 },
-    { id: 'facturation', name: 'Facturation', price: 40 },
+    { id: 'agenda', name: 'Agenda', price: 30, category: 'Gestion' },
+    { id: 'dossier', name: 'Dossier Patient', price: 50, category: 'Médical' },
+    { id: 'facturation', name: 'Facturation', price: 40, category: 'Administratif' },
   ];
   ```
+
+#### Implémentation réalisée :
+- Structure de données améliorée avec 6 produits
+- Organisation des produits en 3 catégories :
+  - Gestion (Agenda, Prise de rendez-vous en ligne)
+  - Médical (Dossier Patient, Téléconsultation)
+  - Administratif (Facturation, Gestion des stocks)
+- Affichage des produits groupés par catégorie dans l'interface
 
 ---
 
